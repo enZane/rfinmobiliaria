@@ -1,0 +1,44 @@
+{
+  "private": true,
+  "sideEffects": false,
+  "scripts": {
+    "build": "run-s \"build:*\"",
+    "build:prisma": "prisma generate --data-proxy",
+    "build:remix": "remix build",
+    "deploy": "wrangler publish",
+    "dev:remix": "remix watch",
+    "dev:miniflare": "cross-env NODE_ENV=development miniflare ./build/index.js --watch",
+    "dev:css": "npm run generate:css -- --watch",
+    "dev": "remix build && run-p \"dev:*\"",
+    "generate:css": "npx tailwindcss -o ./app/tailwind.css",
+    "start": "cross-env NODE_ENV=production miniflare ./build/index.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.7.1",
+    "@remix-run/cloudflare": "^1.8.0",
+    "@remix-run/cloudflare-workers": "^1.8.0",
+    "@remix-run/react": "^1.8.0",
+    "cross-env": "^7.0.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "remix-auth": "^3.4.0",
+    "remix-auth-auth0": "^1.4.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^3.18.0",
+    "@remix-run/dev": "^1.8.0",
+    "@remix-run/eslint-config": "^1.8.0",
+    "@types/react": "^17.0.52",
+    "@types/react-dom": "^17.0.18",
+    "eslint": "^8.27.0",
+    "miniflare": "^2.11.0",
+    "npm-run-all": "^4.1.5",
+    "prisma": "^4.7.1",
+    "tailwindcss": "^3.2.4",
+    "typescript": "^4.8.4",
+    "wrangler": "^2.2.1"
+  },
+  "engines": {
+    "node": ">=16.13"
+  }
+}

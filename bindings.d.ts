@@ -8,4 +8,12 @@ declare global {
   const AUTH0_LOGOUT_URL: string;
   const AUTH0_RETURN_TO_URL: string;
   const DATABASE_URL: string;
+  const cloudinary: {
+    createUploadWidget: (
+      options: any,
+      callback: (error: any, result: any) => void
+    ) => {
+      open: () => void;
+    };
+  };
 }
